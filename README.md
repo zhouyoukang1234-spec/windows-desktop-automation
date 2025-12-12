@@ -161,7 +161,7 @@ else:
 
 ### 标准流程
 ```
-grep/read获取坐标 → run_command点击 → 等待0.5秒 → 验证结果
+read_file获取坐标 → run_command点击 → read_file截图验证 → 决定下一步
 ```
 
 ---

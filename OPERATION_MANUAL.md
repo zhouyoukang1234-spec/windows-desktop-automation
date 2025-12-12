@@ -58,9 +58,9 @@ Start-Process python -ArgumentList "v2_simplified\vision_monitor.py","--interval
 Start-Process python -ArgumentList "v2_simplified\app_monitor.py","--daemon" -WindowStyle Hidden
 ```
 
-### 第二步：等待系统初始化
+### 第二步：验证系统初始化
 
-等待2秒让监控系统完成初始化。
+验证监控系统是否完成初始化。
 
 ### 第三步：验证监控系统是否正常
 
@@ -477,8 +477,7 @@ python -c "import pyautogui; pyautogui.click(X, Y)"
 # 先滚动
 python -c "import pyautogui; pyautogui.scroll(-3)"
 
-# 等待更新
-# 等1秒
+# 验证更新
 
 # 重新读取JSON
 read_file v2_simplified/output/latest.json
@@ -544,10 +543,7 @@ python -c "import pyautogui; pyautogui.press('enter')"
 # 点击操作
 python -c "import pyautogui; pyautogui.click(X, Y)"
 
-# 等待加载（根据情况调整时间）
-# 简单操作：等待0.5秒
-# 打开文件：等待1-2秒
-# 启动程序：等待3-5秒
+# 验证操作结果
 
 # 然后验证
 read_file v2_simplified/output/latest.png
@@ -613,10 +609,9 @@ python -c "import os; os.system('start chrome')"
 
 # 方法2: Win+S搜索
 python -c "import pyautogui; pyautogui.hotkey('win', 's')"
-# 等待0.5秒
 python -c "import pyperclip; pyperclip.copy('程序名'); import pyautogui; pyautogui.hotkey('ctrl', 'v')"
-# 按Enter
 python -c "import pyautogui; pyautogui.press('enter')"
+# 验证程序是否启动
 ```
 
 ---

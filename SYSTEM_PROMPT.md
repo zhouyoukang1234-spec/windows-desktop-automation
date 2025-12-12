@@ -14,22 +14,29 @@ If JSON not readable → check .gitignore, add exception for output/*.json
 
 ---
 
-## DATA FILES
+## DATA FILES (Priority Order)
 
-- `v2_simplified/output/latest.json` - UIA controls (primary)
-- `v2_simplified/output/latest.png` - Screenshot
-- `v2_simplified/output/latest_vision.json` - Vision OCR (fallback)
-- `v2_simplified/output/apps.json` - Running apps
+**DEFAULT - Use these first (covers 90% of cases):**
+- `latest.json` - UIA controls
+- `latest.png` - Screenshot
+
+**FALLBACK - Only when UIA fails (control_count < 5 or element not found):**
+- `latest_vision.json` - Vision OCR
+
+**APP INFO:**
+- `apps.json` - Running apps (for switching)
 
 ---
 
-## WORKFLOW
+## WORKFLOW (MUST follow every step)
 
-1. **READ FULL JSON** - Use `read_file` to see ALL controls, not just grep
+1. **READ JSON** - `read_file v2_simplified/output/latest.json`
 2. **GET COORDINATES** - From JSON only, NEVER guess
 3. **ONE ACTION** - `python -c "import pyautogui; pyautogui.click(X,Y)"`
-4. **VERIFY** - `read_file latest.png` to confirm result
-5. **IF FAILED** - Change method, don't repeat same action
+4. **VIEW SCREENSHOT** - `read_file v2_simplified/output/latest.png` ← **REQUIRED after EVERY action**
+5. **DECIDE NEXT** - Based on screenshot, continue or change method
+
+⚠️ **CRITICAL**: Step 4 is MANDATORY. You MUST view the screenshot after each action to see what happened.
 
 ---
 
